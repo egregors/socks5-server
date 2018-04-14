@@ -48,6 +48,6 @@ func main() {
 	}
 
 	log.Println("Start server")
-	log.Println("Litsen on 0.0.0.0:1111")
+	log.Println("Listen on 0.0.0.0:1111")
 	srv.ListenAndServe("tcp", "0.0.0.0:1111")
 }
