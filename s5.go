@@ -17,8 +17,10 @@ func readUsersFromFile(path string) map[string]string {
 	users := make(map[string]string)
 
 	for _, l := range strings.Split(string(us), "\n") {
-		userPass := strings.Split(l, ":")
-		users[userPass[0]] = userPass[1]
+		if l != "" {
+			userPass := strings.Split(l, ":")
+			users[userPass[0]] = userPass[1]
+		}
 	}
 
 	return users
