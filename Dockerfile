@@ -2,6 +2,10 @@ FROM golang:1.10.1 as builder
 RUN mkdir -p /go/src/github.com/Egregors/socks5-server
 WORKDIR /go/src/github.com/Egregors/socks5-server
 COPY . .
+
+RUN go get -u github.com/golang/dep/...
+RUN dep ensure
+
 RUN go build -ldflags "-linkmode external -extldflags -static" -a s5.go
 
 FROM scratch
