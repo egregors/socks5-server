@@ -6,7 +6,7 @@ COPY . .
 RUN go get -u github.com/golang/dep/...
 RUN dep ensure
 
-RUN go build -ldflags "-linkmode external -extldflags -static" -a s5.go
+RUN CGO_ENABLED=0 GOOS=linux go build -ldflags "-s" -a -installsuffix cgo -o s5
 
 FROM scratch
 COPY --from=builder /go/src/github.com/Egregors/socks5-server/s5 ./
