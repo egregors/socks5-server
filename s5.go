@@ -1,40 +1,35 @@
 package main
 
 import (
+	"fmt"
 	"log"
+
 	"github.com/armon/go-socks5"
+	"github.com/kelseyhightower/envconfig"
+
 	"os"
-	"io/ioutil"
-	"strings"
 )
 
-func readUsersFromFile(path string) map[string]string {
-	us, err := ioutil.ReadFile(path)
-	if err != nil {
-		log.Panic("Can't get users", err.Error())
-	}
-
-	users := make(map[string]string)
-
-	for _, l := range strings.Split(string(us), "\n") {
-		if l != "" {
-			userPass := strings.Split(l, ":")
-			users[userPass[0]] = userPass[1]
-		}
-	}
-
-	return users
+type config struct {
+	Host  string `default:"0.0.0.0"`
+	Port  int    `default:"1080"`
+	Users socks5.StaticCredentials
 }
 
 func main() {
 	log.Println("SOCKS5 server: https://github.com/Egregors/socks5-server")
-	log.Println("Init users..")
-	users := make(socks5.StaticCredentials)
-	for u, p := range readUsersFromFile("users") {
-		users[u] = p
-		log.Printf("User: %s", u)
+
+	var cfg config
+	err := envconfig.Process("", &cfg)
+	if err != nil {
+		log.Fatalf("Failed to read ENV: %s\n", err.Error())
 	}
-	auth := socks5.UserPassAuthenticator{Credentials: users}
+
+	if len(cfg.Users) < 1 {
+		log.Fatal("No user credentials specified in USERS environment variable")
+	}
+
+	auth := socks5.UserPassAuthenticator{Credentials: cfg.Users}
 
 	log.Println("Configuration..")
 	srvConfig := &socks5.Config{
@@ -47,7 +42,9 @@ func main() {
 		log.Panic(err.Error())
 	}
 
-	log.Println("Start server")
-	log.Println("Listen on 0.0.0.0:1111")
-	srv.ListenAndServe("tcp", "0.0.0.0:1111")
+	addr := fmt.Sprintf("%s:%d", cfg.Host, cfg.Port)
+	log.Printf("Starting server on %s\n", addr)
+	if err := srv.ListenAndServe("tcp", addr); err != nil {
+		log.Fatalf("Failed to start socks server on %s: %s\n", addr, err)
+	}
 }
