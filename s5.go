@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/c-pro/go-socks5"
+	socks5 "github.com/c-pro/go-socks5"
 	"github.com/kelseyhightower/envconfig"
 
 	"os"
