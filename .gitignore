@@ -68,6 +68,5 @@ fabric.properties
 
 .idea/
 socks5-server
-vendor
 *.*~
 

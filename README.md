@@ -1,26 +1,26 @@
 # socks5-server
-Simple socks5 server. You may user it as a proxy for Telegram
+Simple socks5 server. You may use it as a proxy for Telegram
 
-![size](https://img.shields.io/badge/image%20size-4.47MB-brightgreen.svg)
+[![Go Report Card](https://goreportcard.com/badge/github.com/C-Pro/socks5-server)](https://goreportcard.com/report/github.com/C-Pro/socks5-server)
+
 
 # Usage
 
-First, you need to add user-pass into `users.example` and rename it to `users`
-
-## bin
 ```
-dep ensure
-go build s5
-./s5
+docker pull cpro29a/socks5-server
+docker run -name socks -d --restart=always -p 1111:1111 -e "USERS=user1:pass1,user2:pass2" cpro29a/socks5-server
 ```
 
-## Docker
-```
-docker build . -t s5
-docker run -d --restart=always -p 1111:1111 s5
-```
+Do not forget to replace usernames and passwords with your (secure) values! :)
 
 Now you may try to connect to 1111 port of your host
+
+## Build
+```
+dep ensure
+go build -o s5 .
+USERS="user1:pass1" ./s5
+```
 
 # Contributing
 Bug reports, bug fixes and new features are always welcome.
