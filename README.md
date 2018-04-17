@@ -1,6 +1,7 @@
 # socks5-server
 Simple socks5 server. You may use it as a proxy for Telegram
 
+![build status](https://img.shields.io/docker/build/cpro29a/socks5-server.svg)
 [![Go Report Card](https://goreportcard.com/badge/github.com/C-Pro/socks5-server)](https://goreportcard.com/report/github.com/C-Pro/socks5-server)
 
 

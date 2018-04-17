@@ -3,9 +3,9 @@
 
 [[projects]]
   branch = "master"
-  name = "github.com/armon/go-socks5"
+  name = "github.com/c-pro/go-socks5"
   packages = ["."]
-  revision = "e75332964ef517daa070d7c38a9466a0d687e0a5"
+  revision = "cb19d3d0e00b7495cedefae7afd4385033065b8e"
 
 [[projects]]
   name = "github.com/kelseyhightower/envconfig"
@@ -13,15 +13,9 @@
   revision = "f611eb38b3875cc3bd991ca91c51d06446afa14c"
   version = "v1.3.0"
 
-[[projects]]
-  branch = "master"
-  name = "golang.org/x/net"
-  packages = ["context"]
-  revision = "500e7a4f953ddaf55d316b4d3adc516aa0379622"
-
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "2956a93c8bd426b5d228d427ff10494dfb48aa576f10f85f11db7ecb1c2039cb"
+  inputs-digest = "3ca3a8171f5facf453215e856c2a49b1a95582998c26691ef22d5d14dc9ca8de"
   solver-name = "gps-cdcl"
   solver-version = 1
