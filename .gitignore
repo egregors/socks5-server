@@ -67,3 +67,6 @@ fabric.properties
 *.exe~
 
 .idea/
+socks5-server
+*.*~
+
