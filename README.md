@@ -9,7 +9,7 @@ Simple socks5 server. You can use it as a proxy for Telegram.
 
 ```
 docker pull egregors/socks5-server
-docker run -name socks -d --restart=always -p 1111:1111 -e "USERS=user1:pass1,user2:pass2" egregors/socks5-server
+docker run --name s5 -d --restart=always -p 1111:1111 -e "USERS=user1:pass1,user2:pass2" egregors/socks5-server
 ```
 
 Do not forget to replace usernames and passwords with your (secure) values! :)
